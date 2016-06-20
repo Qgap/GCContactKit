@@ -6,8 +6,11 @@ s.homepage = "https://github.com/XiaoHanGe/GCContactKit"
 s.license = "MIT"
 s.author ={"HaRi" => "532167805@qq.com"}
 s.platform =iOS,"7.0"
-s.source ={git =>"https://github.com/XiaoHanGe/GCContactKit.git",tag =>s.version}
-s.source_files = "GCContactKit/*/.(h.m)"
+s.ios.deployment_target = "7.0"
+s.source ={git =>"https://github.com/XiaoHanGe/GCContactKit.git",tag =>s.version.to_s}
+
+s.requires_arc = true
+s.source_files = "GCContactKit/**/.{h,m}"
 s.framework ="UIKit","Foundation","AssetsLibrary"
 s.library = 'iconv'
 s.xcconfig = {'HEADER_SEARCH_PATHS' =>'$(SDKROOT)/usr/include/libxml2'}
