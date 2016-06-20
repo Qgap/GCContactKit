@@ -32,6 +32,9 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="测试通讯录是否变化" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oeN-9x-PYT">
                                 <rect key="frame" x="48" y="259" width="224" height="50"/>
                                 <color key="backgroundColor" red="0.84313725490000002" green="0.93725490199999995" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="o5b-K6-rEd"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -39,7 +42,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="oeN-9x-PYT" secondAttribute="bottom" constant="259" id="6dX-Pa-TgO"/>
                             <constraint firstAttribute="trailing" secondItem="oeN-9x-PYT" secondAttribute="trailing" constant="48" id="NHd-Us-6pR"/>
                             <constraint firstItem="i1L-CD-ASp" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="58" id="WdU-1o-yyN"/>
                             <constraint firstItem="oeN-9x-PYT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="48" id="brl-58-JOO"/>

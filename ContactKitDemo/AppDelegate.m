@@ -20,6 +20,7 @@
     // 测试 －－ 通讯录检测状态
     // 通讯录权限检测入口 若有变化发出contact通知
     [[GCGetContacts shareContact]startListen];
+    
     return YES;
 }
 

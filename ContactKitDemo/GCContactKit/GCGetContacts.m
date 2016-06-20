@@ -9,6 +9,7 @@
 #import "GCGetContacts.h"
 #import "ContactModel.h"
 BOOL isHave = NO;
+BOOL granted = NO;
 @implementation GCGetContacts
 
 void contactChangeCallback (ABAddressBookRef addressBook,
@@ -31,7 +32,7 @@ void contactChangeCallback (ABAddressBookRef addressBook,
     return contact;
 }
 
--(instancetype)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
@@ -94,37 +95,64 @@ void contactChangeCallback (ABAddressBookRef addressBook,
 }
 
 #pragma mark ---- 获取通讯录联系人
-// 授权
--(BOOL)contactAuth{
+-(BOOL)contactAuth{// 授权
     
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+        granted = NO;
         CNAuthorizationStatus authorStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-            if (authorStatus != CNAuthorizationStatusAuthorized) {
-            NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-通讯录“选项中，允许%@访问你的通讯录。",NSLocalizedString(@"本App",@"GMChatDemo")];
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:tips delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil] show];
-//            NSURL*url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
-//            [[UIApplication sharedApplication]openURL:url];
-            
-            return NO;
-        }else{
-            return YES;
+        //1 判断是否授权成功
+        if (authorStatus == CNAuthorizationStatusAuthorized){
+            granted = YES;
+        }else if(authorStatus == CNAuthorizationStatusDenied){
+            [self changeAuthorStatus];
+            granted = NO;
+        }else {
+            granted = NO;
         }
+        //2创建通讯录
+        CNContactStore *store = [[CNContactStore alloc] init];
+        //3授权
+        [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
+            if (granted) {
+                NSLog(@"授权成功");
+            }else{
+                NSLog(@"授权失败");
+            }
+        }];
+        
     }else{
         ABAuthorizationStatus authorization = ABAddressBookGetAuthorizationStatus();
         if (authorization!=kABAuthorizationStatusAuthorized) {
             [self changeAuthorStatus];
             NSLog(@"未授权");
-            return NO;
+           granted = NO;
         }
-        return YES;
+           granted = YES;
     }
+    return granted;
 }
 
+#pragma  mark ----- UIAlertViewDelegate
 // 提示用户设置
 - (void)changeAuthorStatus
 {
-    NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-允许%@访问您的通讯录",NSLocalizedString(@"AppName",@"GMChatDemo")];
-    [[[UIAlertView alloc] initWithTitle:@"提示" message:tips delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil] show];
+    NSString *appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleDisplayName"];
+    if (!appName) appName = [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleName"];
+    
+    if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+       UIAlertView *enterSetting = [[UIAlertView alloc]initWithTitle:@"提示" message:[NSString stringWithFormat:@"请在iPhone的”设置-隐私-通讯录“选项中，允许“%@”访问您的通讯录。",appName] delegate:self cancelButtonTitle:@"暂不" otherButtonTitles:@"设置", nil];
+        enterSetting.tag = 100;
+        [enterSetting show];
+    }else{
+       [[[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:@"请在iPhone的”设置-隐私-通讯录“选项中，允许“%@”访问您的通讯录。",appName] delegate:self cancelButtonTitle:@"设置" otherButtonTitles:nil, nil] show];
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1&&alertView.tag == 100) {
+        NSURL*url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
+        [[UIApplication sharedApplication]openURL:url];
+    }
 }
 
 - (NSArray *)getAllContacts
@@ -275,7 +303,7 @@ void contactChangeCallback (ABAddressBookRef addressBook,
     }
 }
 
-#pragma mark 获取通讯录的回调
+#pragma mark ---- 获取通讯录的回调
 - (void)getAllContactFromDeviceSuccess:(void(^)(NSArray* dataAry))success
 {
     __block typeof(self)weak_self = self;

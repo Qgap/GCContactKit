@@ -20,16 +20,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    // 在需要显示监控结果的地方接收name:@"contact"的监控通知结果
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(changeMyLabel) name:@"contact" object:nil];
 }
+
 // 测试
 - (IBAction)beginMonitorContact:(UIButton *)sender
 {
+    // 测试监控通讯录变化 需在程序入口appDelegate 放入开始监控代码(已放置)
+    
     // 添加联系人到通讯录
     //    [[GCGetContacts shareContact]addContactByUserName:@"HaRi" andTel:@"15903992805" success:^(ContactModel *user) {
     //        NSLog(@"添加的联系人为：%@ %@",user.userName,user.mobileNumber);
@@ -53,12 +58,13 @@
     
 }
 
+// 监控通讯录获得直观效果
 - (void)changeMyLabel
 {
     _labelok.text = @"发生变化";
     NSLog(@"11111111111111111111111111");
-    
 }
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

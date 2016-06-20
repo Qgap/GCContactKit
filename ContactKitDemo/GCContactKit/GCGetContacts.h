@@ -16,7 +16,7 @@
 
 @class ContactModel;
 
-@interface GCGetContacts : NSObject
+@interface GCGetContacts : NSObject<UIAlertViewDelegate>
 
 @property(nonatomic, assign)ABAddressBookRef addressBook;
 

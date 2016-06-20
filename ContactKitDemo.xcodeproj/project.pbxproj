@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		11B4BF2E1D177DD500FB3D49 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11B4BF2D1D177DD500FB3D49 /* AssetsLibrary.framework */; };
 		11C4F3351D1140830046C9EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F3341D1140830046C9EA /* main.m */; };
 		11C4F3381D1140830046C9EA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F3371D1140830046C9EA /* AppDelegate.m */; };
 		11C4F33B1D1140830046C9EA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F33A1D1140830046C9EA /* ViewController.m */; };
@@ -17,7 +18,6 @@
 		11C4F3591D1140840046C9EA /* ContactKitDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F3581D1140840046C9EA /* ContactKitDemoUITests.m */; };
 		11C4F36B1D1140AF0046C9EA /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F3681D1140AF0046C9EA /* ContactModel.m */; };
 		11C4F36C1D1140AF0046C9EA /* GCGetContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 11C4F36A1D1140AF0046C9EA /* GCGetContacts.m */; };
-		11F635C11D124AC200ACFC68 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11F635C01D124AC200ACFC68 /* AssetsLibrary.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		11B4BF2D1D177DD500FB3D49 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		11C4F3301D1140830046C9EA /* ContactKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContactKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11C4F3341D1140830046C9EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		11C4F3361D1140830046C9EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -58,7 +59,6 @@
 		11C4F3681D1140AF0046C9EA /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		11C4F3691D1140AF0046C9EA /* GCGetContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCGetContacts.h; sourceTree = "<group>"; };
 		11C4F36A1D1140AF0046C9EA /* GCGetContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCGetContacts.m; sourceTree = "<group>"; };
-		11F635C01D124AC200ACFC68 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11F635C11D124AC200ACFC68 /* AssetsLibrary.framework in Frameworks */,
+				11B4BF2E1D177DD500FB3D49 /* AssetsLibrary.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,12 +87,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11B4BF2B1D177DAB00FB3D49 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				11B4BF2D1D177DD500FB3D49 /* AssetsLibrary.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		11C4F3271D1140830046C9EA = {
 			isa = PBXGroup;
 			children = (
-				11F635C01D124AC200ACFC68 /* AssetsLibrary.framework */,
 				11C4F3321D1140830046C9EA /* ContactKitDemo */,
 				11C4F34C1D1140840046C9EA /* ContactKitDemoTests */,
+				11B4BF2B1D177DAB00FB3D49 /* Frameworks */,
 				11C4F3571D1140840046C9EA /* ContactKitDemoUITests */,
 				11C4F3311D1140830046C9EA /* Products */,
 			);
@@ -442,7 +450,7 @@
 				INFOPLIST_FILE = ContactKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "------------.ContactKitDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ContactKit.HaRi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -454,7 +462,7 @@
 				INFOPLIST_FILE = ContactKitDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "------------.ContactKitDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ContactKit.HaRi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
