@@ -49,12 +49,13 @@
     
     
     // 通过Block获取所有联系人
-    //    [[GCGetContacts shareContact]getAllContactFromDeviceSuccess:^(NSArray *dataAry) {
-    //        NSLog(@"通讯录成员：%ld 人",dataAry.count);
-    //        for (ContactModel *user in dataAry) {
-    //            NSLog(@"%@  %@",user.userName,user.mobileNumber);
-    //        }
-    //    }];
+        [[GCGetContacts shareContact]getAllContactFromDeviceSuccess:^(NSArray *dataAry) {
+            NSLog(@"通讯录有：%ld 人",dataAry.count);
+            for (ContactModel *user in dataAry) {
+                NSLog(@"姓名:%@ 电话:%@ email:%@ 公司:%@",user.userName,user.mobileNumber,user.email,user.company);
+                NSLog(@"\r");
+            }
+        }];
     
 }
 
