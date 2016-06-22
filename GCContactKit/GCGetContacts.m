@@ -100,8 +100,8 @@ void contactChangeCallback (ABAddressBookRef addressBook,
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         CNAuthorizationStatus authorStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
             if (authorStatus != CNAuthorizationStatusAuthorized) {
-            NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-通讯录“选项中，允许%@访问你的通讯录。",NSLocalizedString(@"本App",@"GMChatDemo")];
-            [[[UIAlertView alloc] initWithTitle:@"提示" message:tips delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil] show];
+//            NSString *tips = [NSString stringWithFormat:@"请在iPhone的”设置-隐私-通讯录“选项中，允许%@访问你的通讯录。",NSLocalizedString(@"本App",@"GMChatDemo")];
+//            [[[UIAlertView alloc] initWithTitle:@"提示" message:tips delegate:self cancelButtonTitle:@"好" otherButtonTitles:nil, nil] show];
 //            NSURL*url=[NSURL URLWithString:UIApplicationOpenSettingsURLString];
 //            [[UIApplication sharedApplication]openURL:url];
             
