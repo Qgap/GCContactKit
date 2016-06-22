@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "GCContactKit"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "A real-time monitoring system address book changes, add to delete contacts, read the system address book of GCContactKit."
   s.homepage     = "https://github.com/XiaoHanGe/GCContactKit"
   s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
