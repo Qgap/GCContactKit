@@ -114,8 +114,10 @@ void contactChangeCallback (ABAddressBookRef addressBook,
         //3授权
         [store requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
             if (granted) {
+                granted = YES;
                 NSLog(@"授权成功");
             }else{
+                granted = NO;
                 NSLog(@"授权失败");
             }
         }];
@@ -306,6 +308,7 @@ void contactChangeCallback (ABAddressBookRef addressBook,
 #pragma mark ---- 获取通讯录的回调
 - (void)getAllContactFromDeviceSuccess:(void(^)(NSArray* dataAry))success
 {
+    if (granted) {
     __block typeof(self)weak_self = self;
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         [self.contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL granted, NSError * _Nullable error) {
@@ -316,11 +319,15 @@ void contactChangeCallback (ABAddressBookRef addressBook,
             success([weak_self getAllContacts]);
         });
     }
+    }else{
+        [self changeAuthorStatus];
+    }
 }
 
 - (void)addContactByUserName:(NSString *)name
                       andTel:(NSString *)tel success:(void (^)(ContactModel *user))success andFail:(void (^)(NSString *error))fail
 {
+    if ([self contactAuth]) {
     // 创建联系人记录
     ABRecordRef personRecord = ABPersonCreate();
     // 错误信息
@@ -358,13 +365,16 @@ void contactChangeCallback (ABAddressBookRef addressBook,
     }else{
         [self stopListen]; // 取消监听
     }
+  }
 }
 
 //删除联系人
 - (BOOL)deletePeopleByName:(NSString *)name
 {
+    
     BOOL deleteSuc;
     deleteSuc = NO;
+    if ([self contactAuth]) {
     //取得本地通信录名柄
     ABAddressBookRef tmpAddressBook = ABAddressBookCreate();
     NSArray* tmpPersonArray = (__bridge NSArray*)ABAddressBookCopyArrayOfAllPeople(tmpAddressBook);
@@ -388,6 +398,7 @@ void contactChangeCallback (ABAddressBookRef addressBook,
     if (!deleteSuc) {
         [self stopListen];
     }
+  }
     return deleteSuc;
 }
 @end
