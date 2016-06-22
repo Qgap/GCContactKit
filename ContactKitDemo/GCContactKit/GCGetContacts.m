@@ -96,7 +96,6 @@ void contactChangeCallback (ABAddressBookRef addressBook,
 
 #pragma mark ---- 获取通讯录联系人
 -(BOOL)contactAuth{// 授权
-    
     if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
         granted = NO;
         CNAuthorizationStatus authorStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
