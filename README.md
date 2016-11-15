@@ -35,7 +35,8 @@ For more information, you can download the zip and run the example.
 
 ## Author
 
-HaRi, Hjq995@163.com
+[我的博客](http://example.com/)   HaRi, Hjq995@163.com  
+####iOS开发者交流群：446310206
 
 ## License
 
