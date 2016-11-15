@@ -15,7 +15,7 @@ Address book real-time monitoring status: 1 delete / modify the designated conta
 ## Requirements
 iOS 7 and later.
 ### CocoaPods
-TTGTagCollectionView is available through [CocoaPods](http://cocoapods.org). To install
+GCContactKit is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
